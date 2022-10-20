@@ -1,33 +1,27 @@
 import Head from "next/head";
-import React from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
-import DataTable from "react-data-table-component";
 
 export default function Home({}) {
-  const calculate = () => {};
-  const columns = [
-    {
-      name: "Title",
-      selector: (row) => row.title,
-    },
-    {
-      name: "Year",
-      selector: (row) => row.year,
-    },
-  ];
+  const [grossIncome, setGrossIncome] = useState(0);
+  const [taxes, setTaxes] = useState(0);
 
-  const data = [
-    {
-      id: 1,
-      title: "Beetlejuice",
-      year: "1988",
-    },
-    {
-      id: 2,
-      title: "Ghostbusters",
-      year: "1984",
-    },
-  ];
+  useEffect(() => {
+    if (grossIncome <= 1200000) {
+      setTaxes(0);
+    } else if (grossIncome > 1200000 && grossIncome <= 1500000) {
+      setTaxes((grossIncome - 100000) * 0.6);
+    } else if (grossIncome > 1500000 && grossIncome <= 3000000) {
+      setTaxes((grossIncome - 100000) * 0.12);
+    }
+    else{
+      setTaxes((grossIncome - 100000) * 0.18);
+    }
+  }, [grossIncome]);
+
+  const handleIncome = (e: ChangeEvent<HTMLInputElement>) => {
+    setGrossIncome(Number(e.target.value));
+  };
 
   return (
     <div className={styles.container}>
@@ -47,10 +41,16 @@ export default function Home({}) {
           <h1>PAYE Calculator</h1>
         </div>
         <div className="row">
-          <form onSubmit={calculate}>
+          <form>
             <div className="form-group">
               <label htmlFor="income">Monthly Income</label>
-              <input type="number" className="form-control" id="income" />
+              <input
+                type="number"
+                defaultValue={50000}
+                onChange={handleIncome}
+                className="form-control"
+                id="income"
+              />
             </div>
             <div className="form-group">
               <label htmlFor="income-type">Income Type</label>
@@ -60,7 +60,7 @@ export default function Home({}) {
                 title="Income Type"
               >
                 <option value="annual">Annual</option>
-                <option value="monthly">Monthly</option>
+                <option value="monthly" disabled>Monthly</option>
               </select>
             </div>
           </form>
@@ -70,11 +70,11 @@ export default function Home({}) {
             <tbody>
               <tr>
                 <th>Taxes to be paid</th>
-                <td>LKR 100,000</td>
+                <td>LKR {taxes}</td>
               </tr>
               <tr>
                 <th>Income after taxes</th>
-                <td>LKR 10,000,000</td>
+                <td>LKR {grossIncome-taxes}</td>
               </tr>
             </tbody>
           </table>

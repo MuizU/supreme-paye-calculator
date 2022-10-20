@@ -1,5 +1,8 @@
 module.exports = {
   reactStrictMode: true,
+  compiler:{
+    styledComponents: true
+  },
   typescript: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if

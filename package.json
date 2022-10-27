@@ -2,6 +2,7 @@
   "name": "supreme-paye-calculator",
   "version": "0.0.117",
   "scripts": {
+    "dev": "next dev",
     "start": "next start",
     "build": "next build"
   },
@@ -18,7 +19,7 @@
   "devDependencies": {
     "@types/node": "^18.11.4",
     "@types/react": "^18",
-    "bun-framework-next": "^12.2",
+    "bun-framework-next": "^12.2.5",
     "eslint": "^8.26.0",
     "react-refresh": "0.10.0",
     "typescript": "latest"

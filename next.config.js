@@ -1,8 +1,5 @@
 module.exports = {
   reactStrictMode: true,
-  compiler:{
-    styledComponents: true
-  },
   typescript: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if
@@ -10,4 +7,8 @@ module.exports = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  webpack: (config) => {
+    config.experiments = {...config.experiments, ...{topLevelAwait: true}};
+    return config;
+  }
 };

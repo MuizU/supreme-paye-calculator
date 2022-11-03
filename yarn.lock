@@ -593,7 +593,7 @@ braces@^3.0.2:
   dependencies:
     fill-range "^7.0.1"
 
-bun-framework-next@^12.2:
+bun-framework-next@^12.2.5:
   version "12.2.5"
   resolved "https://registry.yarnpkg.com/bun-framework-next/-/bun-framework-next-12.2.5.tgz#e1619c6a727775709b7aa9b8e4527fc7f0830cde"
   integrity sha512-2sbt+qLxdv6FKIDMwi6dWeTQj6GwF0j0IAKTGk977TIUZMEBqr93Nb2DSIj0FPBF0ZCCO/lGYD3j3ulmmD0GAQ==

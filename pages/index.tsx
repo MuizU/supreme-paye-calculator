@@ -3,14 +3,14 @@ import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 
 export default function Home({}) {
-  const [grossIncome, setGrossIncome] = useState(0);
+  const [grossIncome, setGrossIncome] = useState(1200000);
   const [taxes, setTaxes] = useState(0);
 
   useEffect(() => {
     if (grossIncome <= 1200000) {
       setTaxes(0);
     } else if (grossIncome > 1200000 && grossIncome <= 1500000) {
-      setTaxes((grossIncome - 100000) * 0.6);
+      setTaxes((grossIncome - 1200000) * 0.06);
     } else if (grossIncome > 1500000 && grossIncome <= 3000000) {
       setTaxes((grossIncome - 100000) * 0.12);
     }
@@ -43,10 +43,10 @@ export default function Home({}) {
         <div className="row">
           <form>
             <div className="form-group">
-              <label htmlFor="income">Monthly Income</label>
+              <label htmlFor="income">Annual Income</label>
               <input
                 type="number"
-                defaultValue={50000}
+                defaultValue={1200000}
                 onChange={handleIncome}
                 className="form-control"
                 id="income"
